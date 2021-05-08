@@ -1,7 +1,7 @@
 const routes = require('express').Router();
-const praias = require('../Controller/controllerPraias');
+const praias = require('../controller/controllerPraias');
 
-routes.get('/praias', praias.listPraias);
+routes.get('/praias', praias.listPraiasBemAvaliadas);
 routes.get('/praia', praias.listandoUmaPraia);
 routes.get('/prais-municipio', praias.listaPraiasUnicoMunicipio);
 

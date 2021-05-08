@@ -1,9 +1,14 @@
 const knex = require('../database');
 
 module.exports = {
-  async listPraias(req, res, next) {
+  async listPraiasBemAvaliadas(req, res, next) {
     try {
-      const list = await knex.select().table('praia');
+      const list = await knex
+        .table('praia')
+        .where('avaliacao', '>=', '4.5')
+        .orderBy('avaliacao', 'desc')
+        .select('*')
+        .limit(4);
 
       return res.json(list);
     } catch (error) {
@@ -29,7 +34,7 @@ module.exports = {
             'praia.avaliacao', 
             'praia.lat', 
             'praia.long'
-            );
+          );
       }
        
       const result = await query;
